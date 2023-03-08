@@ -1,22 +1,20 @@
 import { ReactNode, useState } from "react";
 
 interface SquareProps {
-  bgColor?: "black" | "white";
-  children?: ReactNode;
-  fillColor?: "black" | "white";
+  isBlack?: boolean;
+  children?: ReactNode | null;
 }
 
-const Square = ({ bgColor, children }: SquareProps) => {
-  const [bgC, setBgC] = useState(bgColor);
-  const [fillC, setFillC] = useState("white");
-
+const Square = ({ isBlack, children }: SquareProps) => {
+  const [bgC, setBgC] = useState(isBlack ? "black" : "white");
+  const [fillC, setFillC] = useState(isBlack ? "white" : "black");
   return (
     <div
       style={{
         backgroundColor: bgC,
         color: fillC,
-        width: "100%",
-        height: "100%",
+        minWidth: "100%",
+        minHeight: "100%",
       }}
     >
       {children}

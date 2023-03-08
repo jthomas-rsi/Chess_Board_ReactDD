@@ -1,15 +1,19 @@
-import Knight from "./Knight";
-import Sqaure from "./Square";
+import { Grid } from "@mui/material";
+import renderSquare from "../hooks/renderSquare";
 
-interface BoardProps {
-  knightPosition?: Number[];
-}
+const Board = () => {
+  const numSquares = Array.from(Array(64).keys());
 
-const Board = ({ knightPosition }: BoardProps) => {
   return (
-    <div>
-      <Sqaure bgColor="black" children={<Knight />} />
-    </div>
+    <Grid container columns={16}>
+      {numSquares.map((_, index) => {
+        return (
+          <Grid item key={index} xs={2}>
+            {renderSquare(index, 0, [index, 0])}
+          </Grid>
+        );
+      })}
+    </Grid>
   );
 };
 
